@@ -1,6 +1,11 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
+using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using DevExpress.Utils;
 using DevExpress.XtraMap;
 
@@ -18,7 +23,7 @@ namespace WinForms_MapControl_ListAdapter {
         private void InitializeMap() {
             #region #MapPreparation
             object data = LoadData(xmlFilepath);
-            
+
             // Create a map and data for it.
             MapControl map = new MapControl() {
                 CenterPoint = new GeoPoint(-37.2, 143.2),
@@ -104,11 +109,33 @@ namespace WinForms_MapControl_ListAdapter {
 
         #region #LoadData
         // Loads data from a XML file.
-        private DataTable LoadData(string path) {
-            DataSet ds = new DataSet();
-            ds.ReadXml(path);
-            DataTable table = ds.Tables[0];
-            return table;
+        private List<ShipwreckData> LoadData(string path) {
+            return XDocument.Load(path).Element("Ships").Elements("Ship")
+                .Select(e => new ShipwreckData(
+                    year: Convert.ToInt32(e.Element("Year").Value, CultureInfo.InvariantCulture),
+                    name: e.Element("Name").Value,
+                    description: e.Element("Description").Value,
+                    latitude: Convert.ToDouble(e.Element("Latitude").Value, CultureInfo.InvariantCulture),
+                    longitude: Convert.ToDouble(e.Element("Longitude").Value, CultureInfo.InvariantCulture)
+                ))
+                .ToList();
+        }
+
+        public class ShipwreckData {
+            public int Year { get; }
+            public string Name { get; }
+            public string Description { get; }
+            public double Latitude { get; }
+            public double Longitude { get; }
+
+            public ShipwreckData(int year, string name, string description, double latitude, double longitude) {
+                this.Year = year;
+                this.Name = name;
+                this.Description = description;
+                this.Latitude = latitude;
+                this.Longitude = longitude;
+            }
+
         }
         #endregion #LoadData
 
