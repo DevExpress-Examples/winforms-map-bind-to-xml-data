@@ -1,6 +1,11 @@
-﻿Imports System.Data
+﻿Imports System
+Imports System.Collections.Generic
+Imports System.Data
 Imports System.Drawing
+Imports System.Globalization
+Imports System.Linq
 Imports System.Windows.Forms
+Imports System.Xml.Linq
 Imports DevExpress.Utils
 Imports DevExpress.XtraMap
 
@@ -22,7 +27,13 @@ Namespace WinForms_MapControl_ListAdapter
             Dim data As Object = LoadData(xmlFilepath)
 
             ' Create a map and data for it.
-            Dim map As New MapControl() With {.CenterPoint = New GeoPoint(-37.2, 143.2), .ZoomLevel = 5, .Dock = DockStyle.Fill, .ToolTipController = New ToolTipController() With {.AllowHtmlText = True}, .ImageList = LoadImage(imageFilepath)}
+            Dim map As New MapControl() With { _
+                .CenterPoint = New GeoPoint(-37.2, 143.2), _
+                .ZoomLevel = 5, _
+                .Dock = DockStyle.Fill, _
+                .ToolTipController = New ToolTipController() With {.AllowHtmlText = True}, _
+                .ImageList = LoadImage(imageFilepath) _
+            }
             Me.Controls.Add(map)
 '            #End Region ' #MapPreparation
 
@@ -31,7 +42,11 @@ Namespace WinForms_MapControl_ListAdapter
             })
 '            #Region "#VectorData"
             ' Create a vector layer.
-            map.Layers.Add(New VectorItemsLayer() With {.Data = CreateAdapter(data), .ToolTipPattern = "<b>{Name} ({Year})</b> " & ControlChars.CrLf & "{Description}", .ItemImageIndex = 0})
+            map.Layers.Add(New VectorItemsLayer() With { _
+                .Data = CreateAdapter(data), _
+                .ToolTipPattern = "<b>{Name} ({Year})</b> " & ControlChars.CrLf & "{Description}", _
+                .ItemImageIndex = 0 _
+            })
 '            #End Region ' #VectorData
 
 '            #Region "#MiniMap"
@@ -48,7 +63,10 @@ Namespace WinForms_MapControl_ListAdapter
             'Create a Legend containing images.
             Dim legend As New ColorListLegend()
             legend.ImageList = map.ImageList
-            legend.CustomItems.Add(New ColorLegendItem() With {.ImageIndex = 0, .Text = "Shipwreck"})
+            legend.CustomItems.Add(New ColorLegendItem() With { _
+                .ImageIndex = 0, _
+                .Text = "Shipwreck" _
+            })
             map.Legends.Add(legend)
 '            #End Region ' #Legend
         End Sub
@@ -63,9 +81,18 @@ Namespace WinForms_MapControl_ListAdapter
             adapter.Mappings.Latitude = "Latitude"
             adapter.Mappings.Longitude = "Longitude"
 
-            adapter.AttributeMappings.Add(New MapItemAttributeMapping() With {.Member = "Name", .Name = "Name"})
-            adapter.AttributeMappings.Add(New MapItemAttributeMapping() With {.Member = "Year", .Name = "Year"})
-            adapter.AttributeMappings.Add(New MapItemAttributeMapping() With {.Member = "Description", .Name = "Description"})
+            adapter.AttributeMappings.Add(New MapItemAttributeMapping() With { _
+                .Member = "Name", _
+                .Name = "Name" _
+            })
+            adapter.AttributeMappings.Add(New MapItemAttributeMapping() With { _
+                .Member = "Year", _
+                .Name = "Year" _
+            })
+            adapter.AttributeMappings.Add(New MapItemAttributeMapping() With { _
+                .Member = "Description", _
+                .Name = "Description" _
+            })
 
             Return adapter
         End Function
@@ -94,12 +121,26 @@ Namespace WinForms_MapControl_ListAdapter
 
         #Region "#LoadData"
         ' Loads data from a XML file.
-        Private Function LoadData(ByVal path As String) As DataTable
-            Dim ds As New DataSet()
-            ds.ReadXml(path)
-            Dim table As DataTable = ds.Tables(0)
-            Return table
+        Private Function LoadData(ByVal path As String) As List(Of ShipwreckData)
+            Return XDocument.Load(path).Element("Ships").Elements("Ship").Select(Function(e) New ShipwreckData(year:= Convert.ToInt32(e.Element("Year").Value, CultureInfo.InvariantCulture), name:= e.Element("Name").Value, description:= e.Element("Description").Value, latitude:= Convert.ToDouble(e.Element("Latitude").Value, CultureInfo.InvariantCulture), longitude:= Convert.ToDouble(e.Element("Longitude").Value, CultureInfo.InvariantCulture))).ToList()
         End Function
+
+        Public Class ShipwreckData
+            Public ReadOnly Property Year() As Integer
+            Public ReadOnly Property Name() As String
+            Public ReadOnly Property Description() As String
+            Public ReadOnly Property Latitude() As Double
+            Public ReadOnly Property Longitude() As Double
+
+            Public Sub New(ByVal year As Integer, ByVal name As String, ByVal description As String, ByVal latitude As Double, ByVal longitude As Double)
+                Me.Year = year
+                Me.Name = name
+                Me.Description = description
+                Me.Latitude = latitude
+                Me.Longitude = longitude
+            End Sub
+
+        End Class
         #End Region ' #LoadData
 
         #Region "#LoadImage"
