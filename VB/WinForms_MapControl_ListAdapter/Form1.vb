@@ -4,18 +4,15 @@ Imports System.Data
 Imports System.Drawing
 Imports System.Globalization
 Imports System.Linq
-Imports System.Windows.Forms
 Imports System.Xml.Linq
-Imports DevExpress.Utils
 Imports DevExpress.XtraMap
 
 Namespace WinForms_MapControl_ListAdapter
     Partial Public Class Form1
-        Inherits Form
+        Inherits DevExpress.XtraEditors.XtraForm
 
         Private Const bingKey As String = "YOUR_BING_MAPS_KEY_HERE"
         Private Const xmlFilepath As String = "..\..\Data\Ships.xml"
-        Private Const imageFilepath As String = "..\..\Image\Ship.png"
 
         Public Sub New()
             InitializeComponent()
@@ -23,23 +20,8 @@ Namespace WinForms_MapControl_ListAdapter
         End Sub
 
         Private Sub InitializeMap()
-'            #Region "#MapPreparation"
             Dim data As Object = LoadData(xmlFilepath)
 
-            ' Create a map and data for it.
-            Dim map As New MapControl() With { _
-                .CenterPoint = New GeoPoint(-37.2, 143.2), _
-                .ZoomLevel = 5, _
-                .Dock = DockStyle.Fill, _
-                .ToolTipController = New ToolTipController() With {.AllowHtmlText = True}, _
-                .ImageList = LoadImage(imageFilepath) _
-            }
-            Me.Controls.Add(map)
-'            #End Region ' #MapPreparation
-
-            map.Layers.Add(New ImageLayer() With { _
-                .DataProvider = New BingMapDataProvider() With {.BingKey = bingKey} _
-            })
 '            #Region "#VectorData"
             ' Create a vector layer.
             map.Layers.Add(New VectorItemsLayer() With { _
@@ -58,17 +40,6 @@ Namespace WinForms_MapControl_ListAdapter
             miniMap.Layers.Add(New MiniMapVectorItemsLayer() With {.Data = CreateMiniMapAdapter(data)})
             map.MiniMap = miniMap
 '            #End Region ' #MiniMap
-
-'            #Region "#Legend"
-            'Create a Legend containing images.
-            Dim legend As New ColorListLegend()
-            legend.ImageList = map.ImageList
-            legend.CustomItems.Add(New ColorLegendItem() With { _
-                .ImageIndex = 0, _
-                .Text = "Shipwreck" _
-            })
-            map.Legends.Add(legend)
-'            #End Region ' #Legend
         End Sub
 
         #Region "#CreateAdapter"
@@ -142,17 +113,5 @@ Namespace WinForms_MapControl_ListAdapter
 
         End Class
         #End Region ' #LoadData
-
-        #Region "#LoadImage"
-        ' Loads an image to an image collection.
-        Private Function LoadImage(ByVal path As String) As ImageCollection
-            Dim imageCollection As New ImageCollection()
-            Dim image As New Bitmap(path)
-            imageCollection.ImageSize = New Size(50, 50)
-            imageCollection.Images.Add(image)
-            Return imageCollection
-        End Function
-        #End Region ' #LoadImage
     End Class
-
 End Namespace
