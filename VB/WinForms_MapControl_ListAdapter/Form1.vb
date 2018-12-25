@@ -29,12 +29,16 @@ Namespace WinForms_MapControl_ListAdapter
 '            #End Region ' #VectorData
 
 '            #Region "#MiniMap"
-            ' Create a mini map and data for it.         
-            Dim miniMap As New MiniMap() With {.Alignment = MiniMapAlignment.BottomLeft}
-            miniMap.Layers.Add(New MiniMapImageTilesLayer() With { _
-                .DataProvider = New BingMapDataProvider() With {.BingKey = "YOUR_BING_MAPS_KEY_HERE"} _
+            ' Create a mini map and data for it.
+            Dim miniMap As New MiniMap()
+            miniMap.Alignment = MiniMapAlignment.BottomLeft
+            miniMap.Layers.AddRange(New MiniMapLayerBase() { _
+                New MiniMapImageTilesLayer() With { _
+                    .DataProvider = New BingMapDataProvider() With {.BingKey = "YOUR_BING_MAPS_KEY_HERE"} _
+                }, _
+                _
+                New MiniMapVectorItemsLayer() With {.Data = CreateMiniMapAdapter(data)} _
             })
-            miniMap.Layers.Add(New MiniMapVectorItemsLayer() With {.Data = CreateMiniMapAdapter(data)})
             map.MiniMap = miniMap
 '            #End Region ' #MiniMap
         End Sub
