@@ -4,16 +4,13 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Windows.Forms;
 using System.Xml.Linq;
-using DevExpress.Utils;
 using DevExpress.XtraMap;
 
 namespace WinForms_MapControl_ListAdapter {
-    public partial class Form1 : Form {
+    public partial class Form1 : DevExpress.XtraEditors.XtraForm {
         const string bingKey = "YOUR_BING_MAPS_KEY_HERE";
         const string xmlFilepath = @"..\..\Data\Ships.xml";
-        const string imageFilepath = @"..\..\Image\Ship.png";
 
         public Form1() {
             InitializeComponent();
@@ -21,23 +18,8 @@ namespace WinForms_MapControl_ListAdapter {
         }
 
         private void InitializeMap() {
-            #region #MapPreparation
             object data = LoadData(xmlFilepath);
 
-            // Create a map and data for it.
-            MapControl map = new MapControl() {
-                CenterPoint = new GeoPoint(-37.2, 143.2),
-                ZoomLevel = 5,
-                Dock = DockStyle.Fill,
-                ToolTipController = new ToolTipController() { AllowHtmlText = true },
-                ImageList = LoadImage(imageFilepath)
-            };
-            this.Controls.Add(map);
-            #endregion #MapPreparation
-
-            map.Layers.Add(new ImageLayer() {
-                DataProvider = new BingMapDataProvider() { BingKey = bingKey }
-            });
             #region #VectorData
             // Create a vector layer.
             map.Layers.Add(new VectorItemsLayer() {
@@ -58,14 +40,6 @@ namespace WinForms_MapControl_ListAdapter {
             miniMap.Layers.Add(new MiniMapVectorItemsLayer() { Data = CreateMiniMapAdapter(data) });
             map.MiniMap = miniMap;
             #endregion #MiniMap
-
-            #region #Legend
-            //Create a Legend containing images.
-            ColorListLegend legend = new ColorListLegend();
-            legend.ImageList = map.ImageList;
-            legend.CustomItems.Add(new ColorLegendItem() { ImageIndex = 0, Text = "Shipwreck" });
-            map.Legends.Add(legend);
-            #endregion #Legend
         }
 
         #region #CreateAdapter
@@ -138,17 +112,5 @@ namespace WinForms_MapControl_ListAdapter {
 
         }
         #endregion #LoadData
-
-        #region #LoadImage
-        // Loads an image to an image collection.
-        private ImageCollection LoadImage(string path) {
-            ImageCollection imageCollection = new ImageCollection();
-            Bitmap image = new Bitmap(path);
-            imageCollection.ImageSize = new Size(50, 50);
-            imageCollection.Images.Add(image);
-            return imageCollection;
-        }
-        #endregion #LoadImage
     }
-
 }
