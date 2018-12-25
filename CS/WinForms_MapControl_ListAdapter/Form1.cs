@@ -27,14 +27,19 @@ namespace WinForms_MapControl_ListAdapter {
             #endregion #VectorData
 
             #region #MiniMap
-            // Create a mini map and data for it.         
-            MiniMap miniMap = new MiniMap() {
-                Alignment = MiniMapAlignment.BottomLeft
-            };
-            miniMap.Layers.Add(new MiniMapImageTilesLayer() {
-                DataProvider = new BingMapDataProvider() { BingKey = "YOUR_BING_MAPS_KEY_HERE" }
+            // Create a mini map and data for it.
+            MiniMap miniMap = new MiniMap();
+            miniMap.Alignment = MiniMapAlignment.BottomLeft;
+            miniMap.Layers.AddRange(new MiniMapLayerBase[] {
+                new MiniMapImageTilesLayer() {
+                    DataProvider = new BingMapDataProvider() {
+                        BingKey = "YOUR_BING_MAPS_KEY_HERE"
+                    }
+                },
+                new MiniMapVectorItemsLayer() {
+                    Data = CreateMiniMapAdapter(data)
+                }
             });
-            miniMap.Layers.Add(new MiniMapVectorItemsLayer() { Data = CreateMiniMapAdapter(data) });
             map.MiniMap = miniMap;
             #endregion #MiniMap
         }
