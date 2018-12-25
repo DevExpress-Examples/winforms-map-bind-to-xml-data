@@ -11,16 +11,13 @@ Namespace WinForms_MapControl_ListAdapter
     Partial Public Class Form1
         Inherits DevExpress.XtraEditors.XtraForm
 
-        Private Const bingKey As String = "YOUR_BING_MAPS_KEY_HERE"
-        Private Const xmlFilepath As String = "..\..\Data\Ships.xml"
-
         Public Sub New()
             InitializeComponent()
             InitializeMap()
         End Sub
 
         Private Sub InitializeMap()
-            Dim data As Object = LoadData(xmlFilepath)
+            Dim data As Object = LoadData("..\..\Data\Ships.xml")
 
 '            #Region "#VectorData"
             ' Create a vector layer.
@@ -35,7 +32,7 @@ Namespace WinForms_MapControl_ListAdapter
             ' Create a mini map and data for it.         
             Dim miniMap As New MiniMap() With {.Alignment = MiniMapAlignment.BottomLeft}
             miniMap.Layers.Add(New MiniMapImageTilesLayer() With { _
-                .DataProvider = New BingMapDataProvider() With {.BingKey = bingKey} _
+                .DataProvider = New BingMapDataProvider() With {.BingKey = "YOUR_BING_MAPS_KEY_HERE"} _
             })
             miniMap.Layers.Add(New MiniMapVectorItemsLayer() With {.Data = CreateMiniMapAdapter(data)})
             map.MiniMap = miniMap
@@ -110,7 +107,6 @@ Namespace WinForms_MapControl_ListAdapter
                 Me.Latitude = latitude
                 Me.Longitude = longitude
             End Sub
-
         End Class
         #End Region ' #LoadData
     End Class
