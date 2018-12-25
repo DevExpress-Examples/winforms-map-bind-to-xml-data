@@ -19,31 +19,30 @@ Namespace WinForms_MapControl_ListAdapter
         Private Sub InitializeMap()
             Dim data As Object = LoadData("..\..\Data\Ships.xml")
 
-'            #Region "#VectorData"
+#Region "#VectorData"
             ' Create a vector layer.
-            map.Layers.Add(New VectorItemsLayer() With { _
-                .Data = CreateAdapter(data), _
-                .ToolTipPattern = "<b>{Name} ({Year})</b> " & ControlChars.CrLf & "{Description}", _
-                .ItemImageIndex = 0 _
+            map.Layers.Add(New VectorItemsLayer() With {
+                .Data = CreateAdapter(data),
+                .ToolTipPattern = "<b>{Name} ({Year})</b> " & ControlChars.CrLf & "{Description}",
+                .ItemImageIndex = 0
             })
-'            #End Region ' #VectorData
+#End Region ' #VectorData
 
-'            #Region "#MiniMap"
+#Region "#MiniMap"
             ' Create a mini map and data for it.
             Dim miniMap As New MiniMap()
             miniMap.Alignment = MiniMapAlignment.BottomLeft
-            miniMap.Layers.AddRange(New MiniMapLayerBase() { _
-                New MiniMapImageTilesLayer() With { _
-                    .DataProvider = New BingMapDataProvider() With {.BingKey = "YOUR_BING_MAPS_KEY_HERE"} _
-                }, _
-                _
-                New MiniMapVectorItemsLayer() With {.Data = CreateMiniMapAdapter(data)} _
+            miniMap.Layers.AddRange(New MiniMapLayerBase() {
+                New MiniMapImageTilesLayer() With {
+                    .DataProvider = New BingMapDataProvider() With {.BingKey = "YOUR_BING_MAPS_KEY_HERE"}
+                },
+                New MiniMapVectorItemsLayer() With {.Data = CreateMiniMapAdapter(data)}
             })
             map.MiniMap = miniMap
-'            #End Region ' #MiniMap
+#End Region ' #MiniMap
         End Sub
 
-        #Region "#CreateAdapter"
+#Region "#CreateAdapter"
         ' Creates an adapter for the map's vector layer.
         Private Function CreateAdapter(ByVal source As Object) As IMapDataAdapter
             Dim adapter As New ListSourceDataAdapter()
@@ -53,24 +52,24 @@ Namespace WinForms_MapControl_ListAdapter
             adapter.Mappings.Latitude = "Latitude"
             adapter.Mappings.Longitude = "Longitude"
 
-            adapter.AttributeMappings.Add(New MapItemAttributeMapping() With { _
-                .Member = "Name", _
-                .Name = "Name" _
+            adapter.AttributeMappings.Add(New MapItemAttributeMapping() With {
+                .Member = "Name",
+                .Name = "Name"
             })
-            adapter.AttributeMappings.Add(New MapItemAttributeMapping() With { _
-                .Member = "Year", _
-                .Name = "Year" _
+            adapter.AttributeMappings.Add(New MapItemAttributeMapping() With {
+                .Member = "Year",
+                .Name = "Year"
             })
-            adapter.AttributeMappings.Add(New MapItemAttributeMapping() With { _
-                .Member = "Description", _
-                .Name = "Description" _
+            adapter.AttributeMappings.Add(New MapItemAttributeMapping() With {
+                .Member = "Description",
+                .Name = "Description"
             })
 
             Return adapter
         End Function
-        #End Region ' #CreateAdapter
+#End Region ' #CreateAdapter
 
-        #Region "#CreateMiniMapAdapter"
+#Region "#CreateMiniMapAdapter"
         ' Creates an adapter for the mini map's vector layer.
         Private Function CreateMiniMapAdapter(ByVal source As Object) As IMapDataAdapter
             Dim adapter As New ListSourceDataAdapter()
@@ -89,12 +88,20 @@ Namespace WinForms_MapControl_ListAdapter
 
             Return adapter
         End Function
-        #End Region ' #CreateMiniMapAdapter
+#End Region ' #CreateMiniMapAdapter
 
-        #Region "#LoadData"
+#Region "#LoadData"
         ' Loads data from a XML file.
         Private Function LoadData(ByVal path As String) As List(Of ShipwreckData)
-            Return XDocument.Load(path).Element("Ships").Elements("Ship").Select(Function(e) New ShipwreckData(year:= Convert.ToInt32(e.Element("Year").Value, CultureInfo.InvariantCulture), name:= e.Element("Name").Value, description:= e.Element("Description").Value, latitude:= Convert.ToDouble(e.Element("Latitude").Value, CultureInfo.InvariantCulture), longitude:= Convert.ToDouble(e.Element("Longitude").Value, CultureInfo.InvariantCulture))).ToList()
+            Return XDocument.Load(path).Element("Ships").Elements("Ship") _
+                .Select(Function(e) New ShipwreckData(
+                    year:=Convert.ToInt32(e.Element("Year").Value, CultureInfo.InvariantCulture),
+                    name:=e.Element("Name").Value,
+                    description:=e.Element("Description").Value,
+                    latitude:=Convert.ToDouble(e.Element("Latitude").Value, CultureInfo.InvariantCulture),
+                    longitude:=Convert.ToDouble(e.Element("Longitude").Value, CultureInfo.InvariantCulture)
+                )) _
+                .ToList()
         End Function
 
         Public Class ShipwreckData
@@ -112,6 +119,6 @@ Namespace WinForms_MapControl_ListAdapter
                 Me.Longitude = longitude
             End Sub
         End Class
-        #End Region ' #LoadData
+#End Region ' #LoadData
     End Class
 End Namespace
