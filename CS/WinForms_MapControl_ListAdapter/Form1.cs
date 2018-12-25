@@ -9,16 +9,13 @@ using DevExpress.XtraMap;
 
 namespace WinForms_MapControl_ListAdapter {
     public partial class Form1 : DevExpress.XtraEditors.XtraForm {
-        const string bingKey = "YOUR_BING_MAPS_KEY_HERE";
-        const string xmlFilepath = @"..\..\Data\Ships.xml";
-
         public Form1() {
             InitializeComponent();
             InitializeMap();
         }
 
         private void InitializeMap() {
-            object data = LoadData(xmlFilepath);
+            object data = LoadData(@"..\..\Data\Ships.xml");
 
             #region #VectorData
             // Create a vector layer.
@@ -35,7 +32,7 @@ namespace WinForms_MapControl_ListAdapter {
                 Alignment = MiniMapAlignment.BottomLeft
             };
             miniMap.Layers.Add(new MiniMapImageTilesLayer() {
-                DataProvider = new BingMapDataProvider() { BingKey = bingKey }
+                DataProvider = new BingMapDataProvider() { BingKey = "YOUR_BING_MAPS_KEY_HERE" }
             });
             miniMap.Layers.Add(new MiniMapVectorItemsLayer() { Data = CreateMiniMapAdapter(data) });
             map.MiniMap = miniMap;
@@ -109,7 +106,6 @@ namespace WinForms_MapControl_ListAdapter {
                 this.Latitude = latitude;
                 this.Longitude = longitude;
             }
-
         }
         #endregion #LoadData
     }

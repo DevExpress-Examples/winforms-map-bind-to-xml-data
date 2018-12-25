@@ -24,17 +24,23 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             DevExpress.XtraMap.ColorListLegend colorListLegend1 = new DevExpress.XtraMap.ColorListLegend();
             DevExpress.XtraMap.ColorLegendItem colorLegendItem1 = new DevExpress.XtraMap.ColorLegendItem();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.map = new DevExpress.XtraMap.MapControl();
             this.imageLayer1 = new DevExpress.XtraMap.ImageLayer();
             this.bingMapDataProvider1 = new DevExpress.XtraMap.BingMapDataProvider();
             this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
-            this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.map)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.map)).BeginInit();
             this.SuspendLayout();
+            // 
+            // imageCollection
+            // 
+            this.imageCollection.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection.ImageStream")));
+            this.imageCollection.Images.SetKeyName(0, "Ship.png");
             // 
             // map
             // 
@@ -50,7 +56,7 @@
             this.map.Legends.Add(colorListLegend1);
             this.map.Location = new System.Drawing.Point(0, 0);
             this.map.Name = "map";
-            this.map.Size = new System.Drawing.Size(804, 554);
+            this.map.Size = new System.Drawing.Size(812, 554);
             this.map.TabIndex = 0;
             this.map.ToolTipController = this.toolTipController;
             this.map.ZoomLevel = 5D;
@@ -62,22 +68,16 @@
             // 
             this.toolTipController.AllowHtmlText = true;
             // 
-            // imageCollection
-            // 
-            this.imageCollection.ImageSize = new System.Drawing.Size(32, 32);
-            this.imageCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection.ImageStream")));
-            this.imageCollection.Images.SetKeyName(0, "Ship.png");
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 554);
+            this.ClientSize = new System.Drawing.Size(812, 554);
             this.Controls.Add(this.map);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.map)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.map)).EndInit();
             this.ResumeLayout(false);
 
         }
