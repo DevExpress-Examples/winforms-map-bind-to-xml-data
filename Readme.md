@@ -3,17 +3,31 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E4687)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
+
+# Map for WinForms - Create Map Items Based on Data From an XML Data
+
+This example displays ship icons ([map custom items](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.MapCustomElement?p=netframework)) that depict shipwrecks. The Map Control uses the [ListSourceDataAdapter](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.ListSourceDataAdapter?p=netframework) assigned to a [vector layer](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.VectorItemsLayer?p=netframework) to load the shipwreck locations from an XML file.
+
+The example also shows how to add a [mini map](https://docs.devexpress.com/WindowsForms/17683/controls-and-libraries/map-control/visual-elements/mini-map?p=netframework) to navigate the map. 
+
+To show a legend, add a [ColorListLegend](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.ColorListLegend) with [custom items](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.ColorListLegend.CustomItems).
+
+![A map with wrecked ship locations](Images/resulting-map.png)
+
+> **NOTE:** You can handle the vector item's [DataLoaded](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.LayerBase.DataLoaded) event to access created map items in the event arguments.
+
+## Files to Look At
 
 * [Form1.cs](./CS/WinForms_MapControl_ListAdapter/Form1.cs) (VB: [Form1.vb](./VB/WinForms_MapControl_ListAdapter/Form1.vb))
-<!-- default file list end -->
-# XtraMap Getting Started - Lesson 3 - Binding a map control to data loaded from XML
 
+## Documentation
 
-<p>This example illustrates how to <a href="https://documentation.devexpress.com/#WindowsForms/CustomDocument15359">bind</a> a Map control <a href="https://documentation.devexpress.com/#WindowsForms/CustomDocument15359">to data</a>. This data stored in an external XML file, which contains information about wrecked ships, including ship coordinates.</p>
-<p>In this example, the map control automatically generates ship images based on data from the datasource, along with a description for each image in a tooltip.</p>
+* [How to: Automatically Generate Vector Items from a Data Source](https://docs.devexpress.com/WindowsForms/15220/controls-and-libraries/map-control/examples/vector-data/providing-data/how-to-automatically-generate-vector-items-from-a-datasource)
+* [Vector Items](https://docs.devexpress.com/WindowsForms/15091/controls-and-libraries/map-control/vector-data/vector-items?p=netframework)
 
-<br/>
+## More Examples
 
-
+* [How to load data from a KML file](https://github.com/DevExpress-Examples/how-to-load-data-from-a-kml-file-t140303)
+* [How to load SVG file content to the Map Control](https://github.com/DevExpress-Examples/how-to-load-svg-file-content-to-the-map-control-t312482)
+* [How to load data from a SQL geometry data-source](https://github.com/DevExpress-Examples/how-to-load-data-from-a-sql-geometry-data-source-t175898)
+* [How to customize mini map layers](https://github.com/DevExpress-Examples/how-to-customize-mini-map-layers-t201418)
