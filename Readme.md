@@ -6,7 +6,7 @@
 
 # Map for WinForms - Create Map Items Based on Data From an XML Data
 
-This example displays ship icons ([map custom items](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.MapCustomElement?p=netframework)) that depict shipwrecks. Shipwreck locations are loaded from an XML file. To load data from the XML file, the Map Control uses the [ListSourceDataAdapter](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.ListSourceDataAdapter?p=netframework) assigned to a [vector layer](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.VectorItemsLayer?p=netframework).
+This example displays ship icons ([map custom items](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.MapCustomElement?p=netframework)) that depict shipwrecks. The Map Control uses the [ListSourceDataAdapter](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.ListSourceDataAdapter?p=netframework) assigned to a [vector layer](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.VectorItemsLayer?p=netframework) to load the shipwreck locations from an XML file.
 
 The example also shows how to add a [mini map](https://docs.devexpress.com/WindowsForms/17683/controls-and-libraries/map-control/visual-elements/mini-map?p=netframework) to navigate the map. 
 
