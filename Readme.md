@@ -14,7 +14,7 @@ To show a legend, add a [ColorListLegend](https://docs.devexpress.com/WindowsFor
 
 ![A map with wrecked ship locations](Images/resulting-map.png)
 
-> **NOTE:** You can handle the vector item's [DataLoaded](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.LayerBase.DataLoaded) to access created map items in the event arguments.
+> **NOTE:** You can handle the vector item's [DataLoaded](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.LayerBase.DataLoaded) event to access created map items in the event arguments.
 
 ## Files to Look At
 
