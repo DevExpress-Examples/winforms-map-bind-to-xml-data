@@ -6,15 +6,15 @@
 
 # Map for WinForms - How to Create Map Items Based on Data From an XML File
 
-This example displays ship icons ([map custom items](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.MapCustomElement?p=netframework)) that depict shipwrecks. The Map Control uses the [ListSourceDataAdapter](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.ListSourceDataAdapter?p=netframework) assigned to a [vector layer](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.VectorItemsLayer?p=netframework) to load the shipwreck locations from an XML file.
+This example displays ship icons ([map custom items](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.MapCustomElement?p=netframework)) that depict shipwrecks. The Map Control uses the [`ListSourceDataAdapter`](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.ListSourceDataAdapter?p=netframework) assigned to a [vector layer](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.VectorItemsLayer?p=netframework) to load the shipwreck locations from an XML file.
 
 The example also shows how to add a [mini map](https://docs.devexpress.com/WindowsForms/17683/controls-and-libraries/map-control/visual-elements/mini-map?p=netframework) to navigate the map. 
 
-To show a legend, add a [ColorListLegend](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.ColorListLegend) with [custom items](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.ColorListLegend.CustomItems).
+To show a legend, add a [`ColorListLegend`](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.ColorListLegend) with [custom items](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.ColorListLegend.CustomItems).
 
 ![A map with wrecked ship locations](Images/resulting-map.png)
 
-> **NOTE:** You can handle the vector item's [DataLoaded](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.LayerBase.DataLoaded) event to access created map items in the event arguments.
+> **NOTE:** You can handle the vector item's [`DataLoaded`](https://docs.devexpress.com/WindowsForms/DevExpress.XtraMap.LayerBase.DataLoaded) event to access created map items in the event arguments.
 
 ## Files to Look At
 
