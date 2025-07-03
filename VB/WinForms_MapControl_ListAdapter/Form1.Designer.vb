@@ -57,13 +57,14 @@ Namespace WinForms_MapControl_ListAdapter
             colorListLegend1.ImageList = Me.imageCollection
             Me.map.Legends.Add(colorListLegend1)
             Me.map.Location = New System.Drawing.Point(0, 0)
+            Me.map.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
             Me.map.Name = "map"
-            Me.map.Size = New System.Drawing.Size(812, 554)
+            Me.map.Size = New System.Drawing.Size(1624, 1065)
             Me.map.TabIndex = 0
             Me.map.ToolTipController = Me.toolTipController
-            Me.map.ZoomLevel = 5.0R
+            Me.map.ZoomLevel = 5R
             Me.imageLayer1.DataProvider = Me.azureMapDataProvider1
-            Me.azureMapDataProvider1.AzureKey = "YOUR BING MAPS KEY"
+            Me.azureMapDataProvider1.AzureKey = "YOUR azure MAPS KEY"
             Me.azureMapDataProvider1.Tileset = DevExpress.XtraMap.AzureTileset.BaseRoad
             ' 
             ' toolTipController
@@ -72,10 +73,11 @@ Namespace WinForms_MapControl_ListAdapter
             ' 
             ' Form1
             ' 
-            Me.AutoScaleDimensions = New System.Drawing.SizeF(6F, 13F)
+            Me.AutoScaleDimensions = New System.Drawing.SizeF(12F, 25F)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.ClientSize = New System.Drawing.Size(812, 554)
+            Me.ClientSize = New System.Drawing.Size(1624, 1065)
             Me.Controls.Add(Me.map)
+            Me.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
             Me.Name = "Form1"
             Me.Text = "Form1"
             CType((Me.imageCollection), System.ComponentModel.ISupportInitialize).EndInit()
