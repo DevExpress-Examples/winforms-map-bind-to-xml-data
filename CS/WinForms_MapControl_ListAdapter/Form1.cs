@@ -32,8 +32,8 @@ namespace WinForms_MapControl_ListAdapter {
             miniMap.Alignment = MiniMapAlignment.BottomLeft;
             miniMap.Layers.AddRange(new MiniMapLayerBase[] {
                 new MiniMapImageTilesLayer() {
-                    DataProvider = new BingMapDataProvider() {
-                        BingKey = "YOUR_BING_MAPS_KEY_HERE"
+                    DataProvider = new AzureMapDataProvider() {
+                        AzureKey = "YOUR_azure_MAPS_KEY_HERE"
                     }
                 },
                 new MiniMapVectorItemsLayer() {

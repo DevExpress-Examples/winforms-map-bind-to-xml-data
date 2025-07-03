@@ -30,7 +30,7 @@
             this.imageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.map = new DevExpress.XtraMap.MapControl();
             this.imageLayer1 = new DevExpress.XtraMap.ImageLayer();
-            this.bingMapDataProvider1 = new DevExpress.XtraMap.BingMapDataProvider();
+            this.azureMapDataProvider1 = new DevExpress.XtraMap.AzureMapDataProvider();
             this.toolTipController = new DevExpress.Utils.ToolTipController(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.map)).BeginInit();
@@ -55,14 +55,15 @@
             colorListLegend1.ImageList = this.imageCollection;
             this.map.Legends.Add(colorListLegend1);
             this.map.Location = new System.Drawing.Point(0, 0);
+            this.map.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.map.Name = "map";
-            this.map.Size = new System.Drawing.Size(812, 554);
+            this.map.Size = new System.Drawing.Size(1624, 1065);
             this.map.TabIndex = 0;
             this.map.ToolTipController = this.toolTipController;
             this.map.ZoomLevel = 5D;
-            this.imageLayer1.DataProvider = this.bingMapDataProvider1;
-            this.bingMapDataProvider1.BingKey = "YOUR BING MAPS KEY";
-            this.bingMapDataProvider1.Kind = DevExpress.XtraMap.BingMapKind.Area;
+            this.imageLayer1.DataProvider = this.azureMapDataProvider1;
+            this.azureMapDataProvider1.AzureKey = "YOUR azure MAPS KEY";
+            this.azureMapDataProvider1.Tileset = DevExpress.XtraMap.AzureTileset.BaseRoad;
             // 
             // toolTipController
             // 
@@ -70,10 +71,11 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 554);
+            this.ClientSize = new System.Drawing.Size(1624, 1065);
             this.Controls.Add(this.map);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection)).EndInit();
@@ -87,7 +89,7 @@
         private DevExpress.XtraMap.MapControl map;
         private DevExpress.Utils.ToolTipController toolTipController;
         private DevExpress.XtraMap.ImageLayer imageLayer1;
-        private DevExpress.XtraMap.BingMapDataProvider bingMapDataProvider1;
+        private DevExpress.XtraMap.AzureMapDataProvider azureMapDataProvider1;
         private DevExpress.Utils.ImageCollection imageCollection;
     }
 }

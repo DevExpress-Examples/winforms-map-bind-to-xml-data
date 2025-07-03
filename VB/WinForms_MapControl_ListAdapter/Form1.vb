@@ -27,7 +27,7 @@ Namespace WinForms_MapControl_ListAdapter
             ' Create a mini map and data for it.
             Dim miniMap As MiniMap = New MiniMap()
             miniMap.Alignment = MiniMapAlignment.BottomLeft
-            miniMap.Layers.AddRange(New MiniMapLayerBase() {New MiniMapImageTilesLayer() With {.DataProvider = New BingMapDataProvider() With {.BingKey = "YOUR_BING_MAPS_KEY_HERE"}}, New MiniMapVectorItemsLayer() With {.Data = CreateMiniMapAdapter(data)}})
+            miniMap.Layers.AddRange(New MiniMapLayerBase() {New MiniMapImageTilesLayer() With {.DataProvider = New AzureMapDataProvider() With {.AzureKey = "YOUR_BING_MAPS_KEY_HERE"}}, New MiniMapVectorItemsLayer() With {.Data = CreateMiniMapAdapter(data)}})
             map.MiniMap = miniMap
 #End Region  ' #MiniMap
         End Sub

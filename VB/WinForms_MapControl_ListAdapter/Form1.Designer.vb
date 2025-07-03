@@ -32,7 +32,7 @@ Namespace WinForms_MapControl_ListAdapter
             Me.imageCollection = New DevExpress.Utils.ImageCollection(Me.components)
             Me.map = New DevExpress.XtraMap.MapControl()
             Me.imageLayer1 = New DevExpress.XtraMap.ImageLayer()
-            Me.bingMapDataProvider1 = New DevExpress.XtraMap.BingMapDataProvider()
+            Me.azureMapDataProvider1 = New DevExpress.XtraMap.AzureMapDataProvider()
             Me.toolTipController = New DevExpress.Utils.ToolTipController(Me.components)
             CType((Me.imageCollection), System.ComponentModel.ISupportInitialize).BeginInit()
             CType((Me.map), System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,10 +61,10 @@ Namespace WinForms_MapControl_ListAdapter
             Me.map.Size = New System.Drawing.Size(812, 554)
             Me.map.TabIndex = 0
             Me.map.ToolTipController = Me.toolTipController
-            Me.map.ZoomLevel = 5R
-            Me.imageLayer1.DataProvider = Me.bingMapDataProvider1
-            Me.bingMapDataProvider1.BingKey = "YOUR BING MAPS KEY"
-            Me.bingMapDataProvider1.Kind = DevExpress.XtraMap.BingMapKind.Area
+            Me.map.ZoomLevel = 5.0R
+            Me.imageLayer1.DataProvider = Me.azureMapDataProvider1
+            Me.azureMapDataProvider1.AzureKey = "YOUR BING MAPS KEY"
+            Me.azureMapDataProvider1.Tileset = DevExpress.XtraMap.AzureTileset.BaseRoad
             ' 
             ' toolTipController
             ' 
@@ -90,7 +90,7 @@ Namespace WinForms_MapControl_ListAdapter
 
         Private imageLayer1 As DevExpress.XtraMap.ImageLayer
 
-        Private bingMapDataProvider1 As DevExpress.XtraMap.BingMapDataProvider
+        Private azureMapDataProvider1 As DevExpress.XtraMap.AzureMapDataProvider
 
         Private imageCollection As DevExpress.Utils.ImageCollection
     End Class
