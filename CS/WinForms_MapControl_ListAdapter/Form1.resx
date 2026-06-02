@@ -120,11 +120,11 @@
   <metadata name="imageCollection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>481, 18</value>
   </metadata>
-  <assembly alias="DevExpress.Utils.v25.1" name="DevExpress.Utils.v25.1, Version=25.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <assembly alias="DevExpress.Utils.v25.1" name="DevExpress.Utils.v25.1, Version=25.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="imageCollection.ImageStream" type="DevExpress.Utils.ImageCollectionStreamer, DevExpress.Utils.v25.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFtEZXZFeHByZXNzLlV0aWxzLnYyNS4xLCBWZXJzaW9uPTI1
-        LjEuMTEuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iODhkMTc1NGQ3MDBlNDlh
+        LjEuMTIuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iODhkMTc1NGQ3MDBlNDlh
         DAMAAABRU3lzdGVtLkRyYXdpbmcsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQ
         dWJsaWNLZXlUb2tlbj1iMDNmNWY3ZjExZDUwYTNhBQEAAAAoRGV2RXhwcmVzcy5VdGlscy5JbWFn
         ZUNvbGxlY3Rpb25TdHJlYW1lcgIAAAAJSW1hZ2VTaXplBERhdGEEBxNTeXN0ZW0uRHJhd2luZy5T
